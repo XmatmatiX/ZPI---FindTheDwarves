@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindTheDwarvesAPI", "FindTheDwarvesAPI\FindTheDwarvesAPI.csproj", "{ED8076C0-A62B-47E4-AC1F-F5E39945C407}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindTheDwarves.Application", "FindTheDwarves.Application\FindTheDwarves.Application.csproj", "{8CC972BE-D387-4E18-B2F6-FD3216D0F5E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindTheDwarves.Domain", "FindTheDwarves.Domain\FindTheDwarves.Domain.csproj", "{C7741B37-8223-4E8F-BEB2-63B28F5954FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindTheDwarves.Infrastructure", "FindTheDwarves.Infrastructure\FindTheDwarves.Infrastructure.csproj", "{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED8076C0-A62B-47E4-AC1F-F5E39945C407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED8076C0-A62B-47E4-AC1F-F5E39945C407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED8076C0-A62B-47E4-AC1F-F5E39945C407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED8076C0-A62B-47E4-AC1F-F5E39945C407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CC972BE-D387-4E18-B2F6-FD3216D0F5E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CC972BE-D387-4E18-B2F6-FD3216D0F5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CC972BE-D387-4E18-B2F6-FD3216D0F5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC972BE-D387-4E18-B2F6-FD3216D0F5E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7741B37-8223-4E8F-BEB2-63B28F5954FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7741B37-8223-4E8F-BEB2-63B28F5954FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7741B37-8223-4E8F-BEB2-63B28F5954FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7741B37-8223-4E8F-BEB2-63B28F5954FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {551EFCFC-E748-4C7E-8A8E-777632EA5D38}
+	EndGlobalSection
+EndGlobal
