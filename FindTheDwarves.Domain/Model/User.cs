@@ -16,9 +16,10 @@ namespace FindTheDwarves.Domain.Model
 
         public string Password { get; set; }
         public string Username { get; set; }
-        public bool isActive { get; set; }
-        public string ActivationCode { get; set; }
 
+
+        public int RoleID { get; set; }
+        public virtual Role Role { get; set; }
 
         public virtual ICollection<UserAchievement> Achivements { get; set; }
 

@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="Service\" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.17" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FindTheDwarves.Domain\FindTheDwarves.Domain.csproj" />
   </ItemGroup>
 
 </Project>
