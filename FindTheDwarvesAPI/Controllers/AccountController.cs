@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FindTheDwarvesAPI.Controllers
 {
@@ -45,6 +46,13 @@ namespace FindTheDwarvesAPI.Controllers
             }
 
             return Ok(token);
+        }
+
+        [HttpGet("test")]
+        [Authorize]
+        public ActionResult Test()
+        {
+            return Ok(User.FindFirst(c=>c.Type == ClaimTypes.NameIdentifier).Value);
         }
 
     }

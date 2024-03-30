@@ -43,7 +43,7 @@ namespace FindTheDwarvesAPI
                 {
                     ValidIssuer = "http://FindTheDwarfAPI.pl",
                     ValidAudience = "http://FindTheDwarfAPI.pl",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("PSIM_Project"))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationSettings.JwtKey))
                 };
             });
 
@@ -63,7 +63,8 @@ namespace FindTheDwarvesAPI
             builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
             builder.Services.AddSingleton(authenticationSettings);
-            
+
+            builder.Services.AddAuthorization();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -73,14 +74,15 @@ namespace FindTheDwarvesAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseAuthentication();
+
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
-
             app.MapControllers();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.Run();
         }

@@ -11,6 +11,9 @@ namespace FindTheDwarves.Domain.Model
     {
         [Key]
         public int DwarfID { get; set; }
+        [Required]
+        public string ActivationCode { get; set; }
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
 
