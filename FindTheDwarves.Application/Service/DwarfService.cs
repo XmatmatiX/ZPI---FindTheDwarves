@@ -148,5 +148,29 @@ namespace FindTheDwarves.Application.Service
 
             return dwarvesDTO;
         }
+
+        public ListShowDwarvesDTO GetVisitedDwarves(int userID)
+        {
+            var dwarves = _dwarfRepository.GetUserDwarves(userID);
+
+            ListShowDwarvesDTO dwarvesList = new ListShowDwarvesDTO();
+
+
+            foreach (var dwarf in dwarves)
+            {
+
+                ShowDwarfDTO dto = new ShowDwarfDTO()
+                {
+                    DwarfID = dwarf.DwarfID,
+                    Name = dwarf.Name
+                };
+
+                dwarvesList.DwarfList.Add(dto);
+
+            }
+            dwarvesList.Count = dwarvesList.DwarfList.Count;
+
+            return dwarvesList;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FindTheDwarves.Application.Interface;
+﻿using FindTheDwarves.Application.DTO.Dwarves;
+using FindTheDwarves.Application.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +21,19 @@ namespace FindTheDwarvesAPI.Controllers
             _achievementService = achievementService;
         }
 
-
-        [HttpGet("test")]
-        public ActionResult Test() 
+        [HttpPost("AddDwarf")]
+        public ActionResult AddDwarf([FromBody] NewDwarfDTO dto)
         {
-            return Ok("test udany");
+
+            var result = _dwarfService.AddNewDwarf(dto);
+
+            if (result == -1)
+                return Conflict("Dwarf name is already used in database");
+            if (result == -2)
+                return Conflict("Activation code is already used in database");
+            return Ok(result);
+
         }
+
     }
 }

@@ -122,5 +122,21 @@ namespace FindTheDwarves.Infrastructure.Repository
             
             return result;
         }
+
+        public List<Dwarf> GetUserDwarves(int userID)
+        {
+            var userDwarves = _context.Users.Include(u => u.Dwarves).Where(u => u.UserID == userID).FirstOrDefault().Dwarves;
+
+            List<Dwarf> dwarfList = new List<Dwarf>();
+
+            foreach (var userDwarf in userDwarves) 
+            {
+                var dwarf = GetDwarfByID(userDwarf.DwarfID);
+
+                dwarfList.Add(dwarf);
+            }
+
+            return dwarfList;
+        }
     }
 }

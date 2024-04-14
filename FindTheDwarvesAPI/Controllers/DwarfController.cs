@@ -13,24 +13,9 @@ namespace FindTheDwarvesAPI.Controllers
     public class DwarfController : ControllerBase
     {
         private readonly IDwarfService _dwarfService;
-        public DwarfController(IDwarfService dwarfService) 
+        public DwarfController(IDwarfService dwarfService)
         {
             _dwarfService = dwarfService;
-        }
-
-        [HttpPost("AddDwarf")]
-        [Authorize(Roles ="Admin")]
-        public ActionResult AddDwarf([FromBody] NewDwarfDTO dto)
-        {
-
-            var result = _dwarfService.AddNewDwarf(dto);
-
-            if (result == -1)
-                return Conflict("Dwarf name is already used in database");
-            if (result == -2)
-                return Conflict("Activation code is already used in database");
-            return Ok(result);
-
         }
 
         [HttpPost("AddComment")]
@@ -55,7 +40,7 @@ namespace FindTheDwarvesAPI.Controllers
         }
 
         [HttpGet("GetDwarves")]
-        public ActionResult GetDwarf() 
+        public ActionResult GetDwarf()
         {
             var dwarves = _dwarfService.GetDwarves();
 
@@ -70,7 +55,7 @@ namespace FindTheDwarvesAPI.Controllers
             int userID = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var result = _dwarfService.ClaimDwarf(dto, userID);
 
-            if(result == -1)
+            if (result == -1)
             {
                 return BadRequest($"Kod {dto.ActivationCode} nie pasuje do żadnego krasnala");
             }
@@ -83,7 +68,8 @@ namespace FindTheDwarvesAPI.Controllers
         }
 
         [HttpPost("DwarfDetails")]
-        public ActionResult GetDwarfDetails([FromBody] SearchForDwarfDTO dto) 
+        [Authorize]
+        public ActionResult GetDwarfDetails([FromBody] SearchForDwarfDTO dto)
         {
 
             var result = _dwarfService.GetDwarfByName(dto.Name);
@@ -96,7 +82,17 @@ namespace FindTheDwarvesAPI.Controllers
             return Ok(result);
         }
 
-        
+        [HttpGet("VisitedDwarves")]
+        [Authorize]
+        public ActionResult VisitedDwarves()
+        { 
+            var userID = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+            var result = _dwarfService.GetVisitedDwarves(userID);
+
+            return Ok(result);
+
+        }
 
 
     }

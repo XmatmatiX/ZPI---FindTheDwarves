@@ -16,7 +16,11 @@ namespace FindTheDwarves.Application.Interface
         int ClaimDwarf(ClaimDwarfDTO dto, int userID);
 
         ListShowDwarvesDTO GetDwarves();
+        ListShowDwarvesDTO GetVisitedDwarves(int userID);
+
         DwarfDetailsDTO GetDwarfByName(string name);
+
+
 
         
     }

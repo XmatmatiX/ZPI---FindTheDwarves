@@ -48,12 +48,6 @@ namespace FindTheDwarvesAPI.Controllers
             return Ok(token);
         }
 
-        [HttpGet("test")]
-        [Authorize]
-        public ActionResult Test()
-        {
-            return Ok(User.FindFirst(c=>c.Type == ClaimTypes.NameIdentifier).Value);
-        }
 
     }
 }

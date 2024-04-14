@@ -18,7 +18,10 @@ namespace FindTheDwarves.Domain.Interface
         Dwarf GetDwarfByName(string name);
         Dwarf GetDwarfByCode(string code);
 
+        List<Dwarf> GetUserDwarves(int userID);
+
         List<Comment> GetDwarfComments(int dwarfID);
+
 
 
         bool CheckClaim(UserDwarf userDwarf);
