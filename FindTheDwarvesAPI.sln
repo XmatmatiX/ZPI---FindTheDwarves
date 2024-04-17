@@ -5,11 +5,13 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindTheDwarvesAPI", "FindTheDwarvesAPI\FindTheDwarvesAPI.csproj", "{ED8076C0-A62B-47E4-AC1F-F5E39945C407}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindTheDwarves.Application", "FindTheDwarves.Application\FindTheDwarves.Application.csproj", "{8CC972BE-D387-4E18-B2F6-FD3216D0F5E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindTheDwarves.Application", "FindTheDwarves.Application\FindTheDwarves.Application.csproj", "{8CC972BE-D387-4E18-B2F6-FD3216D0F5E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindTheDwarves.Domain", "FindTheDwarves.Domain\FindTheDwarves.Domain.csproj", "{C7741B37-8223-4E8F-BEB2-63B28F5954FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindTheDwarves.Domain", "FindTheDwarves.Domain\FindTheDwarves.Domain.csproj", "{C7741B37-8223-4E8F-BEB2-63B28F5954FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindTheDwarves.Infrastructure", "FindTheDwarves.Infrastructure\FindTheDwarves.Infrastructure.csproj", "{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindTheDwarves.Infrastructure", "FindTheDwarves.Infrastructure\FindTheDwarves.Infrastructure.csproj", "{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindTheDwarvesWeb", "FindTheDwarvesWeb\FindTheDwarvesWeb.csproj", "{812CD8DC-D70A-4933-BA91-2777C3A6E731}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DDF7E60-C401-4935-AC51-5E8EA5F9410D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{812CD8DC-D70A-4933-BA91-2777C3A6E731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{812CD8DC-D70A-4933-BA91-2777C3A6E731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{812CD8DC-D70A-4933-BA91-2777C3A6E731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{812CD8DC-D70A-4933-BA91-2777C3A6E731}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

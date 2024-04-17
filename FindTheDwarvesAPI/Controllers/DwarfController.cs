@@ -67,7 +67,7 @@ namespace FindTheDwarvesAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost("DwarfDetails")]
+        [HttpGet("DwarfDetails")]
         [Authorize]
         public ActionResult GetDwarfDetails([FromBody] SearchForDwarfDTO dto)
         {

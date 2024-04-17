@@ -9,15 +9,15 @@ namespace FindTheDwarves.Application.DTO.Users
 {
     public class RegisterUserDTO
     {
+        [Required]
+        [StringLength(16, MinimumLength = 5)]
+        public string Username { get; set; }
         [EmailAddress]
         [Required]
         public string Email { get; set; }
         [Required]
         [StringLength(16,MinimumLength =5)]
         public string Password { get; set; }
-        [Required]
-        [StringLength(16, MinimumLength = 5)]
-        public string Username { get; set; }
 
     }
 }
