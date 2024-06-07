@@ -40,7 +40,7 @@ namespace FindTheDwarvesAPI.Controllers
         }
 
         [HttpGet("GetDwarves")]
-        public ActionResult GetDwarf()
+        public ActionResult GetDwarves()
         {
             var dwarves = _dwarfService.GetDwarves();
 
@@ -55,28 +55,25 @@ namespace FindTheDwarvesAPI.Controllers
             int userID = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var result = _dwarfService.ClaimDwarf(dto, userID);
 
-            if (result == -1)
+            if (result == null)
             {
                 return BadRequest($"Kod {dto.ActivationCode} nie pasuje do żadnego krasnala");
-            }
-            if (result == -2)
-            {
-                return BadRequest($"Krasnal został już odblokowany");
             }
 
             return Ok(result);
         }
 
-        [HttpGet("DwarfDetails")]
+        [HttpGet("DwarfDetails/{name}")]
         [Authorize]
-        public ActionResult GetDwarfDetails([FromBody] SearchForDwarfDTO dto)
+        public ActionResult GetDwarfDetails(string name)
         {
+            var userID = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
-            var result = _dwarfService.GetDwarfByName(dto.Name);
+            var result = _dwarfService.GetDwarfByName(name, userID);
 
             if (result == null)
             {
-                return BadRequest($"Krasnal {dto.Name} nie istnieje w bazie danych");
+                return BadRequest($"Krasnal {name} nie istnieje w bazie danych lub nie masz do niego prawa dostępu");
             }
 
             return Ok(result);

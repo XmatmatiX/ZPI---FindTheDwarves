@@ -28,7 +28,17 @@ namespace FindTheDwarves.Application.Service
             _authenticationSettings = authenticationSettings;
         }
 
-        public string GenerateJWT(LoginDTO dto)
+        public void DeleteUser(int userID)
+        {
+            var user = _userRepository.GetUserByID(userID);
+
+            if (user == null)
+                return;
+
+            _userRepository.DeleteUser(user);
+        }
+
+        public LoginResponseDTO GenerateJWT(LoginDTO dto)
         {
             var user = _userRepository.Login(dto.Email);
 
@@ -64,8 +74,37 @@ namespace FindTheDwarves.Application.Service
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            return tokenHandler.WriteToken(token);
+            var response = new LoginResponseDTO()
+            {
+                JWT = tokenHandler.WriteToken(token),
+                Username = user.Username,
+                RoleName = user.Role.Name
+            };
+            return response;
 
+        }
+
+        public ListShowUserDTO GetUsers()
+        {
+            var users = _userRepository.GetUsers();
+
+            var result = new ListShowUserDTO();
+
+            foreach (var user in users)
+            {
+                ShowUserDTO item = new ShowUserDTO()
+                {
+                    Email = user.Email,
+                    UserID = user.UserID,
+                    Username = user.Username
+                };
+
+                result.UserList.Add(item);
+            }
+
+            result.Count= result.UserList.Count;
+
+            return result;
         }
 
         public int RegisterUser(RegisterUserDTO dto)

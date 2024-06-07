@@ -48,5 +48,24 @@ namespace FindTheDwarves.Infrastructure.Repository
 
             return users.Any();
         }
+
+        public List<User> GetUsers()
+        {
+            var users = _context.Users.ToList();
+
+            return users;
+        }
+
+        public User GetUserByID(int id)
+        {
+            var user = _context.Users.Where(u => u.UserID == id).FirstOrDefault();
+            return user;
+        }
+
+        public void DeleteUser(User user)
+        {
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+        }
     }
 }

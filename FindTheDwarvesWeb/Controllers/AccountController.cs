@@ -19,9 +19,45 @@ namespace FindTheDwarvesWeb.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginDTO user)
+        public async Task<IActionResult> Login(LoginDTO user)
         {
-            return RedirectToAction("Index", "Home");
+            string uri = "https://localhost:7007/api/account/login";
+
+            LoginResponseDTO userData;
+
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync(uri, content))
+                {
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var apiResponse = await response.Content.ReadAsStringAsync();
+
+                        userData = JsonConvert.DeserializeObject<LoginResponseDTO>(apiResponse);
+
+                        var cookieOptions = new CookieOptions
+                        {
+                            HttpOnly = true,
+                            Expires = DateTimeOffset.UtcNow.AddDays(3)
+                        };
+
+                        Response.Cookies.Append("JWTCookie", userData.JWT, cookieOptions);
+                        Response.Cookies.Append("Username", userData.Username, cookieOptions);
+                        Response.Cookies.Append("Role", userData.RoleName, cookieOptions);
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.LoginResponse = await response.Content.ReadAsStringAsync();
+                        return View();
+                    }
+
+                }
+            }
         }
 
         public IActionResult Register()
@@ -57,9 +93,16 @@ namespace FindTheDwarvesWeb.Controllers
                 }
             }
 
-            return View();
+        }
 
+        public IActionResult Logout()
+        {
 
+            Response.Cookies.Delete("JWTCookie");
+            Response.Cookies.Delete("Username");
+            Response.Cookies.Delete("Role");
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

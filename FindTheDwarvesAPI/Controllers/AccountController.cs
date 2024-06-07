@@ -33,11 +33,11 @@ namespace FindTheDwarvesAPI.Controllers
         public ActionResult Login([FromBody] LoginDTO dto)
         {
 
-            string token;
+            LoginResponseDTO response;
 
             try
             {
-                token = _userService.GenerateJWT(dto);
+                response = _userService.GenerateJWT(dto);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace FindTheDwarvesAPI.Controllers
                 return BadRequest(ex.Message);
             }
 
-            return Ok(token);
+            return Ok(response);
         }
 
 

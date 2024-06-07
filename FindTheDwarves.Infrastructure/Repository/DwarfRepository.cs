@@ -71,7 +71,7 @@ namespace FindTheDwarves.Infrastructure.Repository
 
         public List<Comment> GetDwarfComments(int dwarfID)
         {
-            var comments = _context.Comments.Where(c => c.DwarfID == dwarfID).ToList();
+            var comments = _context.Comments.Include(c => c.Author).Where(c => c.DwarfID == dwarfID).ToList();
 
             if (comments.Count == 0)
             {

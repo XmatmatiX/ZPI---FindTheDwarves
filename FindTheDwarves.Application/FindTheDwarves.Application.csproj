@@ -15,8 +15,4 @@
     <ProjectReference Include="..\FindTheDwarves.Domain\FindTheDwarves.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTO\Achievements\" />
-  </ItemGroup>
-
 </Project>

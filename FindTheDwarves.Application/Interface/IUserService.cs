@@ -10,6 +10,9 @@ namespace FindTheDwarves.Application.Interface
     public interface IUserService
     {
         int RegisterUser(RegisterUserDTO dto);
-        string GenerateJWT(LoginDTO dto);
+        LoginResponseDTO GenerateJWT(LoginDTO dto);
+
+        ListShowUserDTO GetUsers();
+        void DeleteUser(int userID);
     }
 }

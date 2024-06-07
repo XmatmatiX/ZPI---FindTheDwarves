@@ -1,0 +1,41 @@
+﻿@model FindTheDwarves.Application.DTO.Dwarves.NewDwarfDTO
+
+@{
+    ViewData["Title"] = "CreateDwarf";
+}
+
+<h1>Stwórz nowego krasnala</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateDwarf">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActivationCode" class="control-label"></label>
+                <input asp-for="ActivationCode" class="form-control" />
+                <span asp-validation-for="ActivationCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Stwórz" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Dwarves">Wróć do listy</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

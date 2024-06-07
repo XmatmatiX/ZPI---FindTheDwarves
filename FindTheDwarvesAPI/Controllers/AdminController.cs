@@ -35,5 +35,47 @@ namespace FindTheDwarvesAPI.Controllers
 
         }
 
+        [HttpGet("GetDwarfToEdit/{id}")]
+        public ActionResult GetDwarfToEdit(int id)
+        {
+            var result = _dwarfService.GetDwarfToEdit(id);
+
+            return Ok(result);
+        }
+
+        [HttpPost("UpdateDwarf")]
+        public ActionResult UpdateDwarf([FromBody] UpdateDwarfDTO dto)
+        {
+            _dwarfService.UpdateDwarf(dto);
+            return Ok();
+        }
+
+        [HttpGet("Users")]
+        public ActionResult GetUsers()
+        {
+
+            var result = _userService.GetUsers();
+
+            return Ok(result);
+
+        }
+
+        [HttpPost("DeleteDwarf/{id}")]
+        public ActionResult DeleteDwarf(int id)
+        {
+            _dwarfService.DeleteDwarf(id);
+
+            return Ok();
+        }
+
+
+        [HttpPost("DeleteUser/{id}")]
+        public ActionResult DeleteUser(int id) 
+        {
+            _userService.DeleteUser(id);
+
+            return Ok();
+        }
+
     }
 }

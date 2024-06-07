@@ -1,0 +1,46 @@
+﻿@model FindTheDwarves.Application.DTO.Dwarves.DwarfDetailsDTO
+
+@{
+    ViewData["Title"] = "DwarfDetails";
+}
+
+<h1>@Model.Name</h1>
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+<h3>Komentarze:</h3>
+<h5>Dodaj komentarz</h5>
+<form asp-action="DwarfDetails" asp-route="Dwarf">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="newComment.DwarfID" type="hidden" value="@Model.DwarfID"/>
+    <input asp-for="Name" type="hidden" value="@Model.Name"/>
+    <div class="form-group">
+        <label class="control-label">Comment:</label>
+        <textarea asp-for="newComment.Text" class="form-select container-fluid" rows="2"></textarea>
+        <span asp-validation-for="newComment.Text" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Comment" class="btn btn-primary float-right" />
+    </div>
+</form>
+<table class="table">
+    <tbody>
+        @foreach (var item in Model.comments.CommentList)
+        {
+            <tr>
+                <p>@item.AuthorName</p>
+                <br />
+                <p>@item.Text</p>
+            </tr>
+        }
+    </tbody>
+</table>

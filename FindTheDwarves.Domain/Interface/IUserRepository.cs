@@ -13,6 +13,11 @@ namespace FindTheDwarves.Domain.Interface
 
         bool IsUsernameTaken(string username);
         bool IsEmailTaken(string email);
+
+        List<User> GetUsers();
         User Login(string email);
+
+        User GetUserByID(int id);
+        void DeleteUser(User user);
     }
 }

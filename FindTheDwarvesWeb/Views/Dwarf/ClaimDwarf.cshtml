@@ -1,0 +1,33 @@
+﻿@model FindTheDwarves.Application.DTO.Dwarves.ClaimDwarfDTO
+
+@{
+    ViewData["Title"] = "ClaimDwarf";
+}
+
+<h1>Zdobądź krasnala</h1>
+
+<p>Wpisz kod aktywacyjny, aby przypisać krasnala do swojego konta</p>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ClaimDwarf">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ActivationCode" class="control-label"></label>
+                <input asp-for="ActivationCode" class="form-control" />
+                <span asp-validation-for="ActivationCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Odznacz" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Powróć do listy</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

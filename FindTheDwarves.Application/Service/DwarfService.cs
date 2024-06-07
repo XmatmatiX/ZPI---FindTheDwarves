@@ -66,14 +66,15 @@ namespace FindTheDwarves.Application.Service
             return _dwarfRepository.AddDwarf(dwarf);
         }
 
-        public int ClaimDwarf(ClaimDwarfDTO dto, int userID)
+        public DwarfDetailsDTO ClaimDwarf(ClaimDwarfDTO dto, int userID)
         {
+
 
             var dwarf = _dwarfRepository.GetDwarfByCode(dto.ActivationCode);
 
             if (dwarf == null)
             {
-                return -1;
+                return null;
             }
 
             var userDwarf = new UserDwarf()
@@ -82,21 +83,35 @@ namespace FindTheDwarves.Application.Service
                 DwarfID = dwarf.DwarfID
             };
 
-            if (_dwarfRepository.CheckClaim(userDwarf) == true)
-            {
-                return -2;
-            }
-
             _dwarfRepository.ClaimDwarf(userDwarf);
-
-            return dwarf.DwarfID;
+            var result = GetDwarfByName(dwarf.Name, userID);
+            return result;
         }
 
-        public DwarfDetailsDTO GetDwarfByName(string name)
+        public void DeleteDwarf(int dwarfID)
+        {
+            var dwarf = _dwarfRepository.GetDwarfByID(dwarfID);
+            if (dwarf == null)
+            {
+                return;
+            }
+
+            _dwarfRepository.DeleteDwarf(dwarf);
+
+            return;
+
+        }
+
+        public DwarfDetailsDTO GetDwarfByName(string name, int userID)
         {
             var dwarf = _dwarfRepository.GetDwarfByName(name);
 
             if (dwarf == null) 
+            {
+                return null;
+            }
+
+            if (!_dwarfRepository.CanBeCommented(userID,dwarf.DwarfID))
             {
                 return null;
             }
@@ -120,6 +135,7 @@ namespace FindTheDwarves.Application.Service
                     commentDTO.ID = comment.CommentID;
                     commentDTO.Text = comment.Text;
                     commentDTO.AuthorID = comment.UserID;
+                    commentDTO.AuthorName = comment.Author.Username;
 
                     dto.comments.CommentList.Add(commentDTO);
                 }
@@ -127,6 +143,22 @@ namespace FindTheDwarves.Application.Service
             }
             return dto;
 
+        }
+
+
+        public UpdateDwarfDTO GetDwarfToEdit(int id)
+        {
+            var dwarf = _dwarfRepository.GetDwarfByID(id);
+
+            UpdateDwarfDTO dto = new UpdateDwarfDTO()
+            {
+                ID = id,
+                Name= dwarf.Name,
+                Description= dwarf.Description,
+                ActivationCode = dwarf.ActivationCode
+            };
+
+            return dto;
         }
 
         public ListShowDwarvesDTO GetDwarves()
@@ -171,6 +203,21 @@ namespace FindTheDwarves.Application.Service
             dwarvesList.Count = dwarvesList.DwarfList.Count;
 
             return dwarvesList;
+        }
+
+        public void UpdateDwarf(UpdateDwarfDTO dto)
+        {
+            var dwarf = _dwarfRepository.GetDwarfByID(dto.ID);
+            if (dwarf == null)
+            {
+                return;
+            }
+
+            dwarf.Name = dto.Name;
+            dwarf.Description = dto.Description;
+            dwarf.ActivationCode = dto.ActivationCode;
+
+            _dwarfRepository.UpdateDwarf(dwarf);
         }
     }
 }

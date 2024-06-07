@@ -13,15 +13,18 @@ namespace FindTheDwarves.Application.Interface
         int AddNewDwarf(NewDwarfDTO dto);
         int AddComment(NewCommentDTO dto, int userID);
 
-        int ClaimDwarf(ClaimDwarfDTO dto, int userID);
+        DwarfDetailsDTO ClaimDwarf(ClaimDwarfDTO dto, int userID);
 
         ListShowDwarvesDTO GetDwarves();
         ListShowDwarvesDTO GetVisitedDwarves(int userID);
 
-        DwarfDetailsDTO GetDwarfByName(string name);
+        DwarfDetailsDTO GetDwarfByName(string name, int userID);
+        UpdateDwarfDTO GetDwarfToEdit(int id);
 
 
+        void UpdateDwarf(UpdateDwarfDTO dto);
 
+        void DeleteDwarf(int dwarfID);
         
     }
 }

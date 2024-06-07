@@ -15,6 +15,7 @@ namespace FindTheDwarves.Application.DTO.Dwarves
         public string Description { get; set; }
 
         public ListShowCommentDTO comments { get; set; }
+        public NewCommentDTO newComment { get; set; }
 
         public DwarfDetailsDTO()
         {

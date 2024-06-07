@@ -5,5 +5,12 @@
 <div class="text-center">
     <h1 class="display-4">Witamy</h1>
     <p>To jest strona poświęcona zbieraniu Wrocławskich krasnali</p><br />
-    <p>W celu rozpoczęcia zbierania krasnali <a asp-controller="Account" asp-action="Login">zaloguj się</a></p>
+    @if (Context.Request.Cookies["JWTCookie"] == null)
+    {
+        <p>W celu rozpoczęcia zbierania krasnali <a asp-controller="Account" asp-action="Login">zaloguj się</a></p>
+    }else
+    {
+        <p>Aby zdobyć krasnele <a asp-action="ClaimDwarf" asp-controller="Dwarf">wprowadź ich kod</a></p>
+    }
+
 </div>

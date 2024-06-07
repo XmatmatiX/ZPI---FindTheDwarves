@@ -10,6 +10,7 @@ namespace FindTheDwarves.Application.DTO.Comments
     {
         public int ID { get; set; }
         public int AuthorID { get; set; }
+        public string AuthorName { get; set; }
         public string Text { get; set; }
     }
 }
