@@ -1,4 +1,5 @@
-﻿using FindTheDwarves.Application.DTO.Dwarves;
+﻿using FindTheDwarves.Application.DTO.Comments;
+using FindTheDwarves.Application.DTO.Dwarves;
 using FindTheDwarves.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -148,9 +149,24 @@ namespace FindTheDwarvesWeb.Controllers
         public async Task<IActionResult> DwarfDetails(DwarfDetailsDTO data)
         {
 
-            Console.WriteLine();
+            var token = Request.Cookies["JWTCookie"];
 
-            return RedirectToAction("DwarfDetails", data.Name);
+            string uri = "https://localhost:7007/api/Dwarf/addComment";
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                StringContent content = new StringContent(JsonConvert.SerializeObject(data.newComment), Encoding.UTF8, "application/json");
+                using (var respone = await httpClient.PostAsync(uri, content))
+                {
+                    if (respone.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    {
+                        return RedirectToAction("login", "Account");
+                    }
+                }
+            }
+
+            return RedirectToAction("DwarfDetails",new { dwarfName = data.Name});
         }
 
     }

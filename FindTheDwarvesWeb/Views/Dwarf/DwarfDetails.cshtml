@@ -19,17 +19,17 @@
 
 <h3>Komentarze:</h3>
 <h5>Dodaj komentarz</h5>
-<form asp-action="DwarfDetails" asp-route="Dwarf">
+<form asp-action="DwarfDetails">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input asp-for="newComment.DwarfID" type="hidden" value="@Model.DwarfID"/>
-    <input asp-for="Name" type="hidden" value="@Model.Name"/>
+    <input asp-for="Name" type="hidden" value="@Model.Name" />
+    <input asp-for="newComment.DwarfID" type="hidden" value="@Model.DwarfID" />
     <div class="form-group">
-        <label class="control-label">Comment:</label>
-        <textarea asp-for="newComment.Text" class="form-select container-fluid" rows="2"></textarea>
+        <label asp-for="newComment.Text" class="control-label"></label>
+        <input asp-for="newComment.Text" class="form-control" />
         <span asp-validation-for="newComment.Text" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <input type="submit" value="Comment" class="btn btn-primary float-right" />
+        <input type="submit" value="Comment" class="btn btn-primary" />
     </div>
 </form>
 <table class="table">
@@ -38,7 +38,6 @@
         {
             <tr>
                 <p>@item.AuthorName</p>
-                <br />
                 <p>@item.Text</p>
             </tr>
         }
